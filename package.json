@@ -1,0 +1,32 @@
+{
+    "name": "taskmanagerapp",
+    "version": "1.0.0",
+    "description": "A basic task manager app",
+    "main": "index.js",
+    "scripts": {
+        "start": "node src/index.js",
+        "dev": "nodemon src/index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/SantanuGarai/TaskManagerApp.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/SantanuGarai/TaskManagerApp/issues"
+    },
+    "homepage": "https://github.com/SantanuGarai/TaskManagerApp#readme",
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "express": "^4.18.2",
+        "jsonwebtoken": "^8.5.1",
+        "mongodb": "^4.10.0",
+        "mongoose": "^6.6.5",
+        "validator": "^13.7.0"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.20"
+    }
+}
