@@ -3,6 +3,7 @@ require("./db/mongoose"); //just to load the file.. to connect the database.
 
 const userRouter = require("./routers/user");
 const taskRouter = require("./routers/task");
+const Task = require("./models/task");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -19,13 +20,12 @@ app.use(taskRouter);
 // app.use(router); // register it with the express application
 
 app.listen(port, () => {
-  console.log("server is running at port " + port);
+    console.log("server is running at port " + port);
 });
 
-const obj = {
-  name: "santanu",
+const main = async () => {
+    const task = await Task.findById("634c3927f2ccfad6892662a5");
+    await task.populate("owner").execPopulate();
+    console.log(task.owner);
 };
-obj.toJSON = function () {
-  return { age: "20" };
-};
-console.log(JSON.stringify(obj));
+//main();
