@@ -1,8 +1,6 @@
 const mongoose = require("mongoose");
 
-mongoose.connect(
-    "mongodb+srv://taskmanagerapp:gvMDENHXgexAJqjk@cluster0.owvnygf.mongodb.net/?retryWrites=true&w=majority"
-);
+mongoose.connect(process.env.DATABASE_URL);
 
 // {
 //   useNewUrlParser: true,
