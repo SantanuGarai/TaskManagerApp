@@ -4,56 +4,65 @@ const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Task = require("./task");
 
-const userSchema = mongoose.Schema({
-    // mongodb convert model name into lowercase and pluralize it and store into db.
-    // so "User" become 'users' , "Task" become 'tasks'
-    name: {
-        type: String,
-        required: true,
-        trim: true,
-    },
-    password: {
-        type: String,
-        required: true,
-        trim: true,
-        minLength: 6,
-        validate(value) {
-            if (value.toLowerCase().search("password") != -1) {
-                throw new Error("password can not contain 'password'");
-            }
+const userSchema = mongoose.Schema(
+    {
+        // mongodb convert model name into lowercase and pluralize it and store into db.
+        // so "User" become 'users' , "Task" become 'tasks'
+        name: {
+            type: String,
+            required: true,
+            trim: true,
         },
-    },
-    email: {
-        type: String,
-        required: true,
-        unique: true,
-        trim: true,
-        lowercase: true,
-        validate(value) {
-            if (!validator.isEmail(value)) {
-                throw new Error("Please enter a valid email");
-            }
-        },
-    },
-    age: {
-        type: Number,
-        default: 0,
-        validate(value) {
-            if (value < 0) {
-                throw new Error("age must be a positive number");
-            }
-        },
-    },
-    tokens: [
-        {
-            token: {
-                type: String,
-                required: true,
+        password: {
+            type: String,
+            required: true,
+            trim: true,
+            minLength: 6,
+            validate(value) {
+                if (value.toLowerCase().search("password") != -1) {
+                    throw new Error("password can not contain 'password'");
+                }
             },
         },
-    ],
+        email: {
+            type: String,
+            required: true,
+            unique: true,
+            trim: true,
+            lowercase: true,
+            validate(value) {
+                if (!validator.isEmail(value)) {
+                    throw new Error("Please enter a valid email");
+                }
+            },
+        },
+        age: {
+            type: Number,
+            default: 0,
+            validate(value) {
+                if (value < 0) {
+                    throw new Error("age must be a positive number");
+                }
+            },
+        },
+        tokens: [
+            {
+                token: {
+                    type: String,
+                    required: true,
+                },
+            },
+        ],
+    },
+    {
+        timestamps: true,
+    }
+);
+userSchema.virtual("tasks", {
+    ref: "Task",
+    localField: "_id",
+    foreignField: "owner",
 });
-
 userSchema.methods.toJSON = function () {
     const user = this;
     const userObject = user.toObject();

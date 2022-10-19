@@ -24,8 +24,9 @@ app.listen(port, () => {
 });
 
 const main = async () => {
-    const task = await Task.findById("634c3927f2ccfad6892662a5");
-    await task.populate("owner").execPopulate();
+    const task = await Task.findById("634ef7adb0c41d2f49cb4de3");
+    const tt = await task.populate("owner");
     console.log(task.owner);
+    console.log(tt);
 };
 //main();
