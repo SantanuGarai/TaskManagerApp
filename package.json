@@ -19,15 +19,18 @@
     },
     "homepage": "https://github.com/SantanuGarai/TaskManagerApp#readme",
     "dependencies": {
+        "@sendgrid/mail": "^7.7.0",
         "bcryptjs": "^2.4.3",
-        "dotenv": "^16.0.3",
         "express": "^4.18.2",
         "jsonwebtoken": "^8.5.1",
         "mongodb": "^4.10.0",
         "mongoose": "^6.6.5",
+        "multer": "^1.4.5-lts.1",
+        "sharp": "^0.31.1",
         "validator": "^13.7.0"
     },
     "devDependencies": {
+        "dotenv": "^16.0.3",
         "nodemon": "^2.0.20"
     }
 }
